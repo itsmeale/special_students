@@ -1,6 +1,5 @@
 from special_students.features.data_extraction import Extraction
 
-
 RAW_DATA: str = "data/raw/ResultadoAE20211.pdf"
 
 

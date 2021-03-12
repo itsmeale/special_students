@@ -1,8 +1,7 @@
-import requests as req
-from bs4 import BeautifulSoup
-
 from abc import ABC, abstractclassmethod
 
+import requests as req
+from bs4 import BeautifulSoup
 
 COURSE_BASE_URL: str = (
     "https://uspdigital.usp.br/janus/Disciplina?sgldis={course_code}&origem=C&"

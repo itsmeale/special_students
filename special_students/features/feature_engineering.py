@@ -2,7 +2,6 @@ from typing import List
 
 import pandas as pd
 
-
 DISCIPLINES_COLUMNS: List[str] = ["disciplina_1", "disciplina_2", "disciplina_3"]
 
 
