@@ -1,6 +1,7 @@
 import json
 from abc import ABC, abstractclassmethod
 from functools import lru_cache
+from typing import Dict
 
 import requests as req
 from bs4 import BeautifulSoup
@@ -16,7 +17,7 @@ CONCENTRATION_AREA_BASE_URL: str = (
 
 class Spider(ABC):
     @abstractclassmethod
-    def collect(self):
+    def collect(self) -> Dict:
         raise NotImplementedError("Collect class not implemented.")
 
     @staticmethod
@@ -43,7 +44,7 @@ class SpiderGetCourseData(Spider):
     def data_exists(soup: BeautifulSoup):
         return True if soup.find("p", {"class": "info infopt"}) else False
 
-    def collect(self, course_code: str):
+    def collect(self, course_code: str) -> Dict:
         soup = Spider.get_course_page_soup(course_code)
 
         if not SpiderGetCourseData.data_exists(soup):
@@ -70,7 +71,7 @@ class SpiderGetCourseData(Spider):
 
 
 class SpiderGetConcentrationAreaData(Spider):
-    def collect(self):
+    def collect(self) -> Dict:
         def clear_text(text: str) -> str:
             return text.strip().upper()
 

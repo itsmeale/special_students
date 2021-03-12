@@ -65,4 +65,4 @@ class Features:
 if __name__ == "__main__":
     filepath = "data/processed/alunos.csv"
     features = Features(filepath)
-    print(features.generate())
+    features.generate().to_csv("data/processed/alunos_cursos.csv", index=False)
