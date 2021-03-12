@@ -7,6 +7,8 @@ authors = ["ale <0800alefarias@gmail.com>"]
 [tool.poetry.dependencies]
 python = "^3.8"
 tabula-py = "^2.2.0"
+beautifulsoup4 = "^4.9.3"
+bs4 = "^0.0.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "6.2.2"
