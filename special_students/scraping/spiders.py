@@ -1,6 +1,5 @@
 import json
 from abc import ABC, abstractclassmethod
-from functools import lru_cache
 from typing import Dict
 
 import requests as req
@@ -82,7 +81,10 @@ class SpiderGetConcentrationAreaData(Spider):
             list(map(clear_text, area.get_text().split("-"))) for area in areas_links
         ][1:]
 
-        return [{"area_concentracao": area[0], "nome_area_concentracao": area[1]} for area in areas]
+        return [
+            {"area_concentracao": area[0], "nome_area_concentracao": area[1]}
+            for area in areas
+        ]
 
 
 if __name__ == "__main__":
