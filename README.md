@@ -3,6 +3,14 @@ special_students
 
 A short description of the project.
 
+# TODO
+- [ ] Implement the data extraction to gather the pdf directly from the URL
+- [ ] Do a dataviz notebook
+- [ ] Setup project parameters in params file to centralize reuse parameters
+- [ ] Create a streamlit app to show data visualizations
+- [ ] Pack all the data pipeline and streamlit app on a docker image that runs the pipeline and plot the data in a web dashboard
+
+
 Project Organization
 ------------
 ```
