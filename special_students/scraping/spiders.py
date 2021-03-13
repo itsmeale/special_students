@@ -49,10 +49,10 @@ class SpiderGetCourseData(Spider):
 
         if not SpiderGetCourseData.data_exists(soup):
             return {
-                "course_code": None,
-                "course_name": None,
-                "concentration_area": None,
-                "credits": None,
+                "codigo_curso": None,
+                "nome_curso": None,
+                "area_concentracao": None,
+                "creditos": None,
             }
 
         head_info = soup.find_all("span", {"class": "infopt"})
@@ -63,10 +63,10 @@ class SpiderGetCourseData(Spider):
         credits = SpiderGetCourseData.extract_data(infos[3])
 
         return {
-            "course_code": course_code,
-            "course_name": head_info[1].get_text().strip().upper(),
-            "concentration_area": concentration_area,
-            "credits": credits,
+            "codigo_curso": course_code,
+            "nome_curso": head_info[1].get_text().strip().upper(),
+            "area_concentracao": concentration_area,
+            "creditos": credits,
         }
 
 
@@ -82,7 +82,7 @@ class SpiderGetConcentrationAreaData(Spider):
             list(map(clear_text, area.get_text().split("-"))) for area in areas_links
         ][1:]
 
-        return {area[0]: area[1] for area in areas}
+        return [{"area_concentracao": area[0], "nome_area_concentracao": area[1]} for area in areas]
 
 
 if __name__ == "__main__":

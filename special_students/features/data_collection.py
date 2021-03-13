@@ -7,8 +7,8 @@ from special_students.scraping.spiders import (SpiderGetConcentrationAreaData,
 
 
 def get_courses():
-    df = pd.read_csv("data/processed/alunos_cursos.csv")
-    return df["disciplina"].drop_duplicates().values
+    df = pd.read_csv("data/interim/alunos_cursos.csv")
+    return df["codigo_curso"].drop_duplicates().values
 
 
 def generate_courses_data(courses):
@@ -17,13 +17,13 @@ def generate_courses_data(courses):
     for course in courses:
         data.append(spider.collect(course))
 
-    with open("data/processed/cursos.json", "w") as course_json:
+    with open("data/interim/cursos.json", "w") as course_json:
         course_json.write(json.dumps(data))
 
 
 def generate_concentration_area_data():
     spider = SpiderGetConcentrationAreaData()
-    with open("data/processed/areas_concentracao.json", "w") as concentrarion_area_json:
+    with open("data/interim/areas_concentracao.json", "w") as concentrarion_area_json:
         concentrarion_area_json.write(json.dumps(spider.collect()))
 
 

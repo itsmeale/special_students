@@ -33,8 +33,8 @@ class Features:
         df["temp_col"] = df[columns].values.tolist()
         df = (
             df.explode("temp_col")
-            .rename(columns={"temp_col": "disciplina"})
-            .dropna(subset=["disciplina"])
+            .rename(columns={"temp_col": "codigo_curso"})
+            .dropna(subset=["codigo_curso"])
             .drop(columns=DISCIPLINES_COLUMNS)
         )
         return df
@@ -44,7 +44,7 @@ class Features:
         student_approvations = (
             df.groupby(by=["nome_aluno"])
             .count()
-            .rename(columns={"disciplina": "disciplinas_aprovadas"})
+            .rename(columns={"codigo_curso": "disciplinas_aprovadas"})
         )
 
         df = df.merge(
@@ -63,6 +63,6 @@ class Features:
 
 
 if __name__ == "__main__":
-    filepath = "data/processed/alunos.csv"
+    filepath = "data/interim/alunos.csv"
     features = Features(filepath)
-    features.generate().to_csv("data/processed/alunos_cursos.csv", index=False)
+    features.generate().to_csv("data/interim/alunos_cursos.csv", index=False)

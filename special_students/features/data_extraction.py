@@ -43,4 +43,4 @@ if __name__ == "__main__":
     PDF_PATH: str = "data/raw/ResultadoAE20211.pdf"
     ext = Extraction(PDF_PATH)
     df = ext.extract()
-    df.to_csv("data/processed/alunos.csv", index=False)
+    df.to_csv("data/interim/alunos.csv", index=False)
