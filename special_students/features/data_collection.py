@@ -1,3 +1,4 @@
+import asyncio
 import json
 
 import pandas as pd
@@ -14,24 +15,31 @@ def get_courses():
     return df["codigo_curso"].drop_duplicates().values
 
 
-def generate_courses_data(courses):
+def generate_courses_data_tasks(courses):
     spider = SpiderGetCourseData()
-    data = []
-    for course in courses:
-        data.append(spider.collect(course))
 
-    with open("data/interim/cursos.json", "w") as course_json:
-        course_json.write(json.dumps(data))
+    return [
+        asyncio.create_task(spider.collect(course, "data/interim/cursos.json"))
+        for course in courses
+    ]
 
 
-def generate_concentration_area_data():
+async def generate_concentration_area_data():
     spider = SpiderGetConcentrationAreaData()
     with open("data/interim/areas_concentracao.json", "w") as concentrarion_area_json:
-        concentrarion_area_json.write(json.dumps(spider.collect()))
+        spider_result = await spider.collect()
+        concentration_areas = json.dumps(spider_result)
+        concentrarion_area_json.write(concentration_areas)
+
+
+async def main():
+    courses = get_courses()
+    await asyncio.gather(
+        *generate_courses_data_tasks(courses),
+        asyncio.create_task(generate_concentration_area_data())
+    )
 
 
 if __name__ == "__main__":
     with Timer("Executing time: %.2f s"):
-        courses = get_courses()
-        generate_courses_data(courses)
-        generate_concentration_area_data()
+        asyncio.run(main())
