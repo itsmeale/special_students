@@ -4,7 +4,8 @@ special_students
 A short description of the project.
 
 # TODO
-- [ ] Implement the data extraction to gather the pdf directly from the URL
+- [x] Implement courses and concentration areas scraping asynchronously
+- [ ] Implement the data extraction to gather the pdf directly from an URL (cloud bucket)
 - [ ] Do a dataviz notebook
 - [ ] Setup project parameters in params file to centralize reuse parameters
 - [ ] Create a streamlit app to show data visualizations
