@@ -1,6 +1,7 @@
 import json
 
 import pandas as pd
+from codetiming import Timer
 
 from special_students.scraping.spiders import (
     SpiderGetConcentrationAreaData,
@@ -30,6 +31,7 @@ def generate_concentration_area_data():
 
 
 if __name__ == "__main__":
-    courses = get_courses()
-    generate_courses_data(courses)
-    generate_concentration_area_data()
+    with Timer("Executing time: %.2f s"):
+        courses = get_courses()
+        generate_courses_data(courses)
+        generate_concentration_area_data()
