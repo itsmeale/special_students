@@ -3,6 +3,8 @@ from typing import List
 import pandas as pd
 import tabula
 
+from special_students.settings import settings
+
 
 class MissingParameterException(Exception):
     pass
@@ -35,15 +37,14 @@ class Extraction:
     @staticmethod
     def __preprocess_dfs(dfs: List[pd.DataFrame]) -> pd.DataFrame:
         df = pd.concat([Extraction.__preprocess_first_df(dfs[0])] + dfs[1:])
-        df.columns = ["nome_aluno", "disciplina_1", "disciplina_2", "disciplina_3"]
+        df.columns = ["nome_aluno", *settings.courses_columns]
         return df
 
 
 def extract_raw_pdf():
-    PDF_PATH: str = "data/raw/ResultadoAE20211.pdf"
-    ext = Extraction(PDF_PATH)
+    ext = Extraction(settings.raw_pdf_path)
     df = ext.extract()
-    df.to_csv("data/interim/alunos.csv", index=False)
+    df.to_csv(settings.interim_students_path, index=False)
 
 
 if __name__ == "__main__":
