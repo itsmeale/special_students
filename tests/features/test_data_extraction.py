@@ -1,6 +1,7 @@
-from special_students.features.data_extraction import Extraction
+from special_students.extraction.data_extraction import Extraction
+from special_students.settings import settings
 
-RAW_DATA: str = "data/raw/ResultadoAE20211.pdf"
+RAW_DATA: str = settings.raw_pdf_path
 
 
 def test_extraction():
