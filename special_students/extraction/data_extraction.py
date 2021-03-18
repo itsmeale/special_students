@@ -39,8 +39,12 @@ class Extraction:
         return df
 
 
-if __name__ == "__main__":
+def extract_raw_pdf():
     PDF_PATH: str = "data/raw/ResultadoAE20211.pdf"
     ext = Extraction(PDF_PATH)
     df = ext.extract()
     df.to_csv("data/interim/alunos.csv", index=False)
+
+
+if __name__ == "__main__":
+    extract_raw_pdf()
