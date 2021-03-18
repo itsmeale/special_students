@@ -1,13 +1,17 @@
 import pandas as pd
 
+from special_students.settings import settings
+
 
 def join_all_data():
-    students = pd.read_csv("data/interim/alunos_cursos.csv")
+    students = pd.read_csv(settings.interim_students_courses_path)
     courses = pd.read_json(
-        "data/interim/cursos.json", encoding="cp1252", dtype={"area_concentracao": str}
+        settings.interim_courses_json_path,
+        encoding="cp1252",
+        dtype={"area_concentracao": str},
     ).dropna()
     concentration_area = pd.read_json(
-        "data/interim/areas_concentracao.json",
+        settings.interim_concentration_areas_json_path,
         encoding="cp1252",
         orient="records",
         dtype={"area_concentracao": str},
@@ -20,6 +24,9 @@ def join_all_data():
     ).merge(right=concentration_area, on=["area_concentracao"], how="inner")
 
 
+def build_features():
+    join_all_data().to_csv(settings.processed_approvals_path, index=False)
+
+
 if __name__ == "__main__":
-    df = join_all_data()
-    df.to_csv("data/processed/aprovacoes.csv", index=False)
+    build_features()
