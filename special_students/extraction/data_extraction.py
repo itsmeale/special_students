@@ -41,11 +41,11 @@ class Extraction:
         return df
 
 
-def extract_raw_pdf():
+def data_extraction():
     ext = Extraction(settings.raw_pdf_path)
     df = ext.extract()
     df.to_csv(settings.interim_students_path, index=False)
 
 
 if __name__ == "__main__":
-    extract_raw_pdf()
+    data_extraction()
