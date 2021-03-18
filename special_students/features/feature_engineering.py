@@ -2,7 +2,7 @@ from typing import List
 
 import pandas as pd
 
-DISCIPLINES_COLUMNS: List[str] = ["disciplina_1", "disciplina_2", "disciplina_3"]
+from special_students.settings import settings
 
 
 class Features:
@@ -35,7 +35,7 @@ class Features:
             df.explode("temp_col")
             .rename(columns={"temp_col": "codigo_curso"})
             .dropna(subset=["codigo_curso"])
-            .drop(columns=DISCIPLINES_COLUMNS)
+            .drop(columns=settings.courses_columns)
         )
         return df
 
@@ -57,12 +57,15 @@ class Features:
     def generate(self):
         return (
             self.df.pipe(Features.string_standardization)
-            .pipe(Features.columns_concat_and_explode, columns=DISCIPLINES_COLUMNS)
+            .pipe(Features.columns_concat_and_explode, columns=settings.courses_columns)
             .pipe(Features.count_disciplines)
         )
 
 
+def feature_engineering():
+    features = Features(settings.interim_students_path)
+    features.generate().to_csv(settings.interim_students_courses_path, index=False)
+
+
 if __name__ == "__main__":
-    filepath = "data/interim/alunos.csv"
-    features = Features(filepath)
-    features.generate().to_csv("data/interim/alunos_cursos.csv", index=False)
+    feature_engineering()
