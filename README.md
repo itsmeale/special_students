@@ -7,7 +7,7 @@ A short description of the project.
 - [x] Implement courses and concentration areas scraping asynchronously
 - [ ] Do a dataviz notebook
 - [x] Setup project parameters in params file to centralize reuse parameters
-- [ ] Implement a data pipeline
+- [x] Implement a data pipeline
 - [ ] Create a streamlit app to show data visualizations
 - [ ] Pack all the data pipeline and streamlit app on a docker image that runs the pipeline and plot the data in a web dashboard
 
