@@ -3,10 +3,8 @@ import json
 
 import pandas as pd
 
-from special_students.scraping.spiders import (
-    SpiderGetConcentrationAreaData,
-    SpiderGetCourseData,
-)
+from special_students.scraping.spiders import (SpiderGetConcentrationAreaData,
+                                               SpiderGetCourseData)
 from special_students.settings import settings
 
 
