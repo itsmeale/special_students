@@ -5,7 +5,6 @@ A short description of the project.
 
 # TODO
 - [x] Implement courses and concentration areas scraping asynchronously
-- [ ] Implement the data extraction to gather the pdf directly from an URL (cloud bucket)
 - [ ] Do a dataviz notebook
 - [ ] Setup project parameters in params file to centralize reuse parameters
 - [ ] Create a streamlit app to show data visualizations
