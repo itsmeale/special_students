@@ -5,10 +5,13 @@ from special_students.features.feature_engineering import feature_engineering
 
 
 def data_pipeline():
+    print("Starting data pipeline...")
     data_extraction()
     feature_engineering()
     data_collection()
     build_features()
+    print("Data pipeline finished.")
 
 
-data_pipeline()
+if __name__ == "__main__":
+    data_pipeline()
