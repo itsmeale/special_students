@@ -5,7 +5,7 @@ A short description of the project.
 
 # TODO
 - [x] Implement courses and concentration areas scraping asynchronously
-- [ ] Do a dataviz notebook
+- [x] Do a dataviz notebook
 - [x] Setup project parameters in params file to centralize reuse parameters
 - [x] Implement a data pipeline
 - [ ] Create a streamlit app to show data visualizations
